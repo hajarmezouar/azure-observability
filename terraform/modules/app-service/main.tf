@@ -23,7 +23,8 @@ resource "azurerm_linux_web_app" "app" {
     application_stack {
       python_version = "3.11"
     }
+    health_check_path                 = "/health"
+    health_check_eviction_time_in_min = 10
   }
-
   tags = var.tags
 }
