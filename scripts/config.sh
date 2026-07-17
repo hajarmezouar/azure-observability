@@ -29,8 +29,8 @@ BACKEND_KEY="${OWNER}.terraform.tfstate"
 # ==========================================
 
 GITHUB_OWNER="hajarmezouar"
-GITHUB_REPOSITORY="azure-infra-terraform"
+GITHUB_REPOSITORY="azure-observability"
 
 SP_NAME="github-${OWNER}-terraform"
 
-FEDERATED_CREDENTIAL_NAME="github-main"
+FEDERATED_CREDENTIAL_NAME="github-${GITHUB_REPOSITORY}-main"

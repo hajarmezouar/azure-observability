@@ -29,9 +29,9 @@ az storage account create \
     --sku Standard_LRS
 
 echo ""
-echo "Waiting 20 seconds for Storage Account provisioning..."
+echo "Waiting 60 seconds for Storage Account provisioning..."
 
-sleep 20
+sleep 60
 
 echo ""
 echo "Retrieving Storage Account key..."
