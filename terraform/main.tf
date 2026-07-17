@@ -53,11 +53,12 @@ module "storage" {
 module "app_service" {
   source = "./modules/app-service"
 
-  owner               = var.owner
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  service_plan_id     = azurerm_service_plan.plan.id
-  tags                = local.tags
+  owner                                  = var.owner
+  resource_group_name                    = azurerm_resource_group.rg.name
+  location                               = azurerm_resource_group.rg.location
+  service_plan_id                        = azurerm_service_plan.plan.id
+  tags                                   = local.tags
+  application_insights_connection_string = module.observability.app_insights_connection_string
 }
 
 # ── Function App ──────────────────────────────────────────────────────────────
@@ -65,11 +66,12 @@ module "app_service" {
 module "function_app" {
   source = "./modules/function-app"
 
-  owner               = var.owner
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  service_plan_id     = azurerm_service_plan.plan.id
-  tags                = local.tags
+  owner                                  = var.owner
+  resource_group_name                    = azurerm_resource_group.rg.name
+  location                               = azurerm_resource_group.rg.location
+  service_plan_id                        = azurerm_service_plan.plan.id
+  tags                                   = local.tags
+  application_insights_connection_string = module.observability.func_insights_connection_string
 }
 
 # ── Container Instance ────────────────────────────────────────────────────────
@@ -92,4 +94,23 @@ module "network" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   tags                = local.tags
+}
+
+# ── Observability ───────────────────────────────────────────────────────────────────
+module "observability" {
+  source = "./modules/observability"
+
+  owner               = var.owner
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  tags                = local.tags
+
+  app_service_id     = module.app_service.app_service_id
+  function_app_id    = module.function_app.function_app_id
+  storage_account_id = module.storage.storage_account_id
+
+  app_service_url  = "https://${module.app_service.default_hostname}"
+  function_app_url = "https://${module.function_app.default_hostname}"
+
+  alert_email = "hajarmezouar617@gmail.com"
 }

@@ -17,3 +17,8 @@ variable "service_plan_id" {
 variable "tags" {
   type = map(string)
 }
+
+variable "application_insights_connection_string" {
+  description = "Application Insights connection string."
+  type        = string
+}
