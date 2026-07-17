@@ -1,3 +1,13 @@
+variables {
+  owner                 = "hajar-mezouar"
+  resource_group_name   = "hmezouarRG"
+  app_service_plan_name = "plan-npr-prf2026"
+  location              = "germanywestcentral"
+
+  tags = {
+    owner = "hajar-mezouar"
+  }
+}
 run "container_plan" {
 
   command = plan

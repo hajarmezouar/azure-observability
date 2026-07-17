@@ -16,7 +16,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region where the infrastructure will be deployed."
   type        = string
-  default     = "francecentral"
+  default     = "germanywestcentral"
 }
 
 variable "app_service_plan_name" {
