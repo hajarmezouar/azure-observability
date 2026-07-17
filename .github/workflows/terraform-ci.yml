@@ -162,8 +162,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Debug GitHub OIDC claims
-        uses: github/actions-oidc-debugger@v1
       - name: Azure Login (OIDC)
         uses: azure/login@v2.3.0
         with:
